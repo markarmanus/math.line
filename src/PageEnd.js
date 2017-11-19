@@ -9,7 +9,7 @@ class PageEnd extends Component{
                 <div>
                 <p >Made By Mark Armaniou © 2017</p>
                 
-                <a href=""><i className="fa fa-github fa-2x" ></i></a>
+                <a href="https://github.com/markarmanus/match.line" target="_blank"><i className="fa fa-github fa-2x" ></i></a>
                 </div>
             </div>
         );

@@ -31,7 +31,7 @@ class App extends Component {
       reset: false,
       status: "Click on Play To Start",
       usedSegs : 1,
-      levelSegs: 5,
+      levelSegs: 30,
       points : 0,
       dummyVariable : true,
       firstClickPlay: true,
@@ -46,8 +46,8 @@ class App extends Component {
     this.setState({usedSegs : value,dummyVariable : !this.state.dummyVariable});
     
   }
-  points(){
-    points += 1;
+  points(value){
+    points += value;
   }
   levelSegs(value){
     this.setState({levelSegs :  value,dummyVariable : !this.state.dummyVariable});

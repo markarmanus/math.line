@@ -19,7 +19,8 @@ class GameContorller extends Component{
                                         resetFunc={this.props.resetFunc}
                                         
                         />
-                        <Hints level={this.props.level} />
+                        <Hints  level={this.props.level}
+                        />
             </div>
         );
     }

@@ -29,16 +29,7 @@ class LevelSelector extends Component{
                 
                 
                 </div>
-{/*                 
-                    <select className="selectpicker" data-style="btn-primary" onChange={(event) => {this.props.levelFunc(event.target.value)}}>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
-                        <option value="4">Level 4</option>
-                        <option value="5">Level 5</option>
-                        <option value="6">Level 6</option>
-                        <option value="7">Level 7</option>
-                    </select> */}
+
                 
             </div>
         );

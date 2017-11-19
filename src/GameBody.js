@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {addLevelPoints} from "./levels.js";
 var paper = require("paper");
 var first = true;
 
@@ -11,9 +12,9 @@ class GameBody extends Component{
     createStartingPoint(){
         var numOfSquaresWide = Math.floor(window.innerWidth / 40 ) + 1;
         var lst =[];
-        var startingSquare = Math.floor(numOfSquaresWide * 0.3);
+        var startingSquare = Math.floor(numOfSquaresWide * 0.45);
         lst[0] = startingSquare *40
-        lst[1] = 320
+        lst[1] = 240
         return lst;
     }
     componentDidMount(){
@@ -98,7 +99,7 @@ class GameBody extends Component{
                 break;
             }
         }
-        if(found && segments.length === winSegments.length){
+        if(found && segments.length <= winSegments.length){
             this.state.clicked = "win";        
             first= true;
             var lst = this.createStartingPoint();
@@ -110,8 +111,8 @@ class GameBody extends Component{
             this.state.winPath = this.createWinPath();
             var nextLevel = (parseInt(this.state.currentLevel,10)+1).toString();
             this.createLevel(nextLevel);
+            this.props.pointsFunc(parseInt(this.state.currentLevel,10));
             this.state.currentLevel = nextLevel;
-            this.props.pointsFunc();
             this.props.levelSegsFunc(this.state.winPath.segments.length);
             this.props.levelFunc(nextLevel);
             this.props.usedSegsFunc(1);
@@ -123,44 +124,11 @@ class GameBody extends Component{
     }
     createLevel(num){
         var lst = this.createStartingPoint();
-        switch (num){
-            case "1":
-                this.state.winPath.add(lst[0],lst[1]-10);
-                this.state.winPath.add(lst[0],lst[1]-20);
-                this.state.winPath.add(lst[0]+10,lst[1]-30);
-                this.state.winPath.add(lst[0]+20,lst[1]-40);
-                this.state.winPath.add(lst[0]+30,lst[1]-30);
-                this.state.winPath.add(lst[0]+40,lst[1]-20);
-                this.state.winPath.add(lst[0]+40,lst[1]-10);
-                this.state.winPath.add(lst[0]+40,lst[1]);
-                this.state.winPath.add(lst[0]+30,lst[1]);
-                this.state.winPath.add(lst[0]+20,lst[1]);
-                this.state.winPath.add(lst[0]+10,lst[1]);
-                this.state.winPath.add(lst[0],lst[1]);
-                break;
-            case "2":
-                
-                this.state.winPath.add(lst[0],lst[1]-10);
-                this.state.winPath.add(lst[0],lst[1]-20);
-                this.state.winPath.add(lst[0],lst[1]-30);
-                this.state.winPath.add(lst[0],lst[1]-40);
-                break;
-            case "3":
-                this.state.winPath.add(lst[0],lst[1]-20);
-                this.state.winPath.add(lst[0],lst[1]-40);
-                this.state.winPath.add(lst[0],lst[1]-80);
-                this.state.winPath.add(lst[0],lst[1]-30);
-                this.state.winPath.add(lst[0],lst[1]-20);
-                this.state.winPath.add(lst[0],lst[1]-40);
-                this.state.winPath.add(lst[0],lst[1]-80);
-                this.state.winPath.add(lst[0],lst[1]-30);
-                break;
-            default:
-            break;
+        addLevelPoints(this.state.winPath,lst,num,1);
            
 
 
-        }
+        
     }
     addSegment(){
 
@@ -213,16 +181,14 @@ class GameBody extends Component{
     
     }
     componentWillReceiveProps(nextProps){
-        
-        if(this.props.dummyVariable !== nextProps.dummyVariable){
-            this.state.clicked = "";
-        }
-        else if(nextProps.reset !== this.props.reset){
+        if(nextProps.reset !== this.props.reset){
             this.setState(this.getInitialState());           
             first= true;
             this.componentDidMount();
             this.componentDidMount();
 
+        }else if(this.props.dummyVariable !== nextProps.dummyVariable){
+            this.state.clicked = "";
         
         
         }else if (nextProps.play !== this.props.play){

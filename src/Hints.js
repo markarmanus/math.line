@@ -14,6 +14,7 @@ class Hints extends Component{
     help(){
         if(!this.state.isVisible){
         this.setState({lst:[<HintsBody key="item.id" level={this.props.level} />],isVisible:true});
+
         }else{
             this.setState({lst:[],isVisible:false});
         }

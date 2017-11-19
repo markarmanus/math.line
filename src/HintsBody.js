@@ -1,5 +1,9 @@
 import React, {Component} from "react";
+import {createPointsList} from "./levels.js";
 var paper = require("paper");
+var scalingFactor = 0.5;
+var startingPoint= [100,100];
+
 class HintsBody extends Component{
     componentDidMount(){
         this.setState({path : this.createPath()});
@@ -10,18 +14,18 @@ class HintsBody extends Component{
         paper.setup(canvas);
         var path = new paper.Path();
         path.strokeColor = 'black';
-        var start = new paper.Point(100*0.5, 100*0.5);
+        var start = new paper.Point(startingPoint[0]*scalingFactor, startingPoint[1]*scalingFactor);
         path.moveTo(start);
         paper.view.draw();
         return path;
     }
     creatLevel(level){
         var speed = 10;
-        if(this.state.levels[level-1]){
+        if(this.state.level){
         paper.view.onFrame = function(event) {
-            if(event.count < this.state.levels[level-1].length*speed){
+            if(event.count < this.state.level.length*speed){
                 if(event.count % speed ===0){
-            var point = this.state.levels[level-1][event.count/speed];
+            var point = this.state.level[event.count/speed];
             this.state.path.add(point[0],point[1]);
                 }
             }
@@ -35,23 +39,7 @@ class HintsBody extends Component{
     constructor(props){
         super(props);
         this.state={
-            levels: [
-                [
-                    [100*0.5,108*0.5],
-                    [100*0.5,116*0.5],
-                    [100*0.5,124*0.5],
-                    [100*0.5,132*0.5],
-                    [100*0.5,140*0.5],
-                ],
-                [
-                    [80,118],
-                    [90,136],
-                    [80,154],
-                    [80,122],
-                    [80,180],
-
-                ],
-            ],
+            level: createPointsList(startingPoint,this.props.level,scalingFactor),
             path: "",
         }
     }
