@@ -1,0 +1,122 @@
+
+
+.App{
+
+    background-color: #432F4B;
+
+
+}
+#header {
+    width: 100%;
+    height: 150px;
+    background-color:#E9EFE0;
+ 
+
+}
+
+
+#gameTitle {
+    margin: 0 auto;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    width: 375px;
+    position: relative;
+    top: 55px;
+    text-align: center;
+    font-size: 47px;
+}
+#status{
+    margin: 0 auto;
+    position: relative;
+    top: 63px;
+    width: 375px;
+    text-align: center;
+}
+#title-desc{
+    width: 375px;
+    margin: 0 auto;
+    position: relative;
+    top: 78px;
+
+
+}
+#title-desc-2{
+    width: 375px;
+    margin: 0 auto;
+    position: relative;
+    top: 62px;
+
+}
+#left{
+    float: left;
+    clear: left;
+
+    
+}
+#right{
+    float: right;
+    clear: right
+
+
+}
+#myCanvas{  
+    background-color: #9ead86;
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+    max-height: 360px;
+    max-width: 100vw;
+}
+#gameController{
+    text-align: center;
+}
+.button-border-highlight{
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: black;
+    border-color: black;
+    margin-right:10px; 
+    margin-bottom: 10px;
+
+}
+.button-border-highlight:hover{
+    color: white;
+    border-color: white;
+}
+.flipped{
+    transform:rotate(45deg);
+}
+.button-border{
+    color: black;
+    border-color: black;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.button-border:hover{
+    color: white;
+    border-color:white;
+    margin: 10px;
+}
+#hintButton{
+    font-size: 18px;
+}
+#hintsBody{
+    background-color: #9ead86;
+    border : 1px solid black;
+}
+.center{
+    text-align: center;
+
+}
+#pageEnd{
+    background-color: #34563C;
+    width: 100%;
+    height: 100px;
+
+}
+#pageEnd div{
+    position: relative;
+    top: 20px;
+    color: black;
+}
+
