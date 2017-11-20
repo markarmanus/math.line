@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-
+//component for the game title.
 
 class GameTitle extends Component{
     render(){

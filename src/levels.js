@@ -1,4 +1,4 @@
-
+// a list of levels each level i a list of the directions user should take to draw the shape.
 var directionsList= [
                         [   
                             "u","u","ur","ur","dr","dr","d","d","l","l","l","l"
@@ -52,20 +52,22 @@ var directionsList= [
                         
                       
                     ]
-
+// function that takes a path,level num, and a number to scale the drawing with and adds the level points to the path. 
 export function addLevelPoints(path,lst,num,scaleFactor) {
+
     var pointsList = createPointsList(lst,num,scaleFactor);
     pointsList.forEach(function(point){
         path.add(point[0],point[1]);
     });
 
 };
-                
+ //function that creates a list of points each point is a list of x and y positions.             
 export function  createPointsList(startingPoint,levelNum,scaleFactor){
         var pointsList= [];
         var x = startingPoint[0];
         var y = startingPoint[1];
-
+        // goes through the directions of the level and changes the value 
+        // of x and y from the starting points accordingly and add it to the list to return.
         directionsList[parseInt(levelNum,10)-1].forEach(function(direction) { 
             switch(direction){
                 case "u":

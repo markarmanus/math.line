@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-
+// component for the page ending.
 
 class PageEnd extends Component{
     render(){

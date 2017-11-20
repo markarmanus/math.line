@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-
+// component with all the  attributes in the game which have values being passed as props from app.js.
 class GameAttributes extends Component {
     render(){
         return(

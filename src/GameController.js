@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Hints from "./Hints.js";
 import Controllers from "./Controllers.js";
-
+//component that passes to hints component and controllers the props passed from app.js.
 class GameContorller extends Component{
     render(){
         return(

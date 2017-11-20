@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-
+// fucntion that has all the level buttons and pass the chose one to app.js.
 
 class LevelSelector extends Component{
 

@@ -41,32 +41,38 @@ class App extends Component {
     super(props);    
     this.state = this.getInitialState();
   }
+  // function to update number of segments user used.
   usedSegs(value){
     this.setState({usedSegs : value,dummyVariable : !this.state.dummyVariable});
     
   }
+  // function to update the points user gain from wining levels.
   points(value){
     points += value;
   }
+  // function to update numbe of segments this level uses.
   levelSegs(value){
     this.setState({levelSegs :  value,dummyVariable : !this.state.dummyVariable});
   }
+  // function to reset everything.
   reset(){
     points = 0;
     this.setState(this.getInitialState());
     this.setState({reset: !this.state.reset });
   }
+  // function to change level and status.
   level(levelNum){
     this.setState({level: levelNum,status: "remember this shape and redraw it witht the arrows"});
   }
+  //function to set a boolean of starting to play to true.
   play(){
     if (this.state.firstClickPlay === true){
-    
-    this.setState({play:!this.state.play,status:"Chose Any Level",firstClickPlay: false});
+      this.setState({play:!this.state.play,status:"Chose Any Level",firstClickPlay: false});
     }else{
       this.setState({play:!this.state.play});
     }
   }
+  // functions to change the value of different direction states and rerender the game body.
   up(){ 
     if(this.state.firstClickPlay ===false){
       this.setState({status: "Try to Redraw the Shape"});
@@ -116,6 +122,7 @@ class App extends Component {
     }
     this.setState({left: this.state.left + 1});    
   }
+  //function to change undo value and rerender game body.
   undo(){
     this.setState({undo: this.state.undo +1});
   }
@@ -160,21 +167,21 @@ class App extends Component {
           
 
           <div className="row">
-          <LevelSelector levelFunc={this.level.bind(this)} />
-          <GameController upFunc={this.up.bind(this)} 
-                          downFunc={this.down.bind(this)}
-                          rightFunc={this.right.bind(this)}
-                          leftFunc={this.left.bind(this)}
-                          upRightFunc={this.upRight.bind(this)}
-                          upLeftFunc={this.upLeft.bind(this)}
-                          downRightFunc={this.downRight.bind(this)}
-                          downLeftFunc={this.downLeft.bind(this)}
-                          undoFunc = {this.undo.bind(this)}
-                          playFunc = {this.play.bind(this)}
-                          resetFunc = {this.reset.bind(this)}
-                          level = {this.state.level}
-                          
-          />
+            <LevelSelector levelFunc={this.level.bind(this)} />
+            <GameController upFunc={this.up.bind(this)} 
+                            downFunc={this.down.bind(this)}
+                            rightFunc={this.right.bind(this)}
+                            leftFunc={this.left.bind(this)}
+                            upRightFunc={this.upRight.bind(this)}
+                            upLeftFunc={this.upLeft.bind(this)}
+                            downRightFunc={this.downRight.bind(this)}
+                            downLeftFunc={this.downLeft.bind(this)}
+                            undoFunc = {this.undo.bind(this)}
+                            playFunc = {this.play.bind(this)}
+                            resetFunc = {this.reset.bind(this)}
+                            level = {this.state.level}
+                            
+            />
           </div>
 
          

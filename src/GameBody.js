@@ -9,6 +9,7 @@ var first = true;
 
 
 class GameBody extends Component{ 
+    //function that creates the starting point for the papper.js path.
     createStartingPoint(){
         var numOfSquaresWide = Math.floor(window.innerWidth / 40 ) + 1;
         var lst =[];
@@ -17,12 +18,13 @@ class GameBody extends Component{
         lst[1] = 240
         return lst;
     }
+    // makes sure we reload the canvas everytime the component re renders.
     componentDidMount(){
 
         var canvas = document.getElementById('myCanvas');
         paper.setup(canvas);
     }
-
+    // gets the initial values of the component's States.
     getInitialState(){
         var lst = this.createStartingPoint();
         return ({
@@ -37,6 +39,7 @@ class GameBody extends Component{
         });
 
     }
+    //creates the path the will draw the level the user should try to redraw.
     createWinPath(){
         this.makeGrid();
         var path = new paper.Path();
@@ -46,6 +49,7 @@ class GameBody extends Component{
         paper.view.draw();
         return path;
     }
+    //creates the path the user will use to draw.
     createPath(){
       
         this.makeGrid();
@@ -56,9 +60,13 @@ class GameBody extends Component{
         paper.view.draw();
         return path;
     }    
+    // creates a grid from lines(each is a path).
     makeGrid(){
+        //gets number of squares wide by deviding screen width with square width.
         var numOfSquaresWide = Math.floor(window.innerWidth / 40) + 1;
-        var numOfSquaresHeight = (360 / 40 )+1;
+
+        var numOfSquaresHeight = 10;
+            //creates vertical lines.
             for (var i = 0;i <= numOfSquaresHeight;i++){
                 var newPath = new paper.Path();
                 newPath.strokeColor= "rgba(0,0,0,0.25)";
@@ -67,6 +75,7 @@ class GameBody extends Component{
         
                 
             }
+            //creates horiznotal lines.
             for (var x = 0;x <= numOfSquaresWide;x++){
                 newPath = new paper.Path();
                 newPath.strokeColor= "rgba(0,0,0,0.25)";
@@ -81,11 +90,12 @@ class GameBody extends Component{
         
         
     }
+    //checks if the user have redrawn the level.
     checkIfWin(){
         var found = false;
         var winSegments = this.state.winPath.segments;
         var segments = this.state.path.segments;
-
+        //goes thourgh each segment in wining path and try to find it in user path.
         for (var i = 0; i<winSegments.length;i++ ){
             for (var j =0;j<segments.length;j++){
                 if(winSegments[i].point.x === segments[j].point.x && winSegments[i].point.y === segments[j].point.y){
@@ -99,6 +109,7 @@ class GameBody extends Component{
                 break;
             }
         }
+
         if(found && segments.length <= winSegments.length){
             this.state.clicked = "win";        
             first= true;
@@ -122,6 +133,7 @@ class GameBody extends Component{
         }
        
     }
+    // creates a level.
     createLevel(num){
         var lst = this.createStartingPoint();
         addLevelPoints(this.state.winPath,lst,num,1);
@@ -130,6 +142,7 @@ class GameBody extends Component{
 
         
     }
+    // add a segment the user path.
     addSegment(){
 
         this.state.path.add(this.state.x,this.state.y); 
@@ -138,6 +151,7 @@ class GameBody extends Component{
         this.checkIfWin();       
         
     }
+    // removes the last segment from user path and sets state x and y to last point.
     removeLastSegment(){
             
         this.state.path.removeSegment(this.state.path.segments.length - 1);                  
@@ -147,6 +161,7 @@ class GameBody extends Component{
         
         
     }
+    //function used to compare last segment and return the value of compare and String to handle later.
     Compare(path){
         if (path.segments.length <= 1){
             return "";
@@ -180,17 +195,20 @@ class GameBody extends Component{
     }
     
     }
+    // checks which props was changed.
     componentWillReceiveProps(nextProps){
+        // reset everything if reset was changed.
         if(nextProps.reset !== this.props.reset){
             this.setState(this.getInitialState());           
             first= true;
             this.componentDidMount();
             this.componentDidMount();
 
+        // check if the dummyVariable was chaned so we dont do anything.
         }else if(this.props.dummyVariable !== nextProps.dummyVariable){
             this.state.clicked = "";
         
-        
+        // checks if this is the first time pressing play and acts acordingly.
         }else if (nextProps.play !== this.props.play){
             this.state.clicked = "play";            
             if(this.state.clickedPlay === true){
@@ -201,15 +219,20 @@ class GameBody extends Component{
             this.createLevel(nextProps.level);
             }
 
+        // if the user did not either click or play or changed the dummyVariable Prop.
         }else{
+
+            //makes sure the user already clicked play.
             if(this.state.clickedPlay){
+
+                //if this is the first time clicking any of the arrows after clicking play create the user path.
                 if (first){
                     this.componentDidMount();
                     this.state.path = this.createPath();
-                    
-            
                     first = false;
                 }
+
+                // checks what arrow used clicked on and changes this.state.clicked acordingly.
                 if(nextProps.up  !== this.props.up){
                     this.state.clicked= "up";
                 }else if(nextProps.down  !== this.props.down){
@@ -228,6 +251,8 @@ class GameBody extends Component{
                     this.state.clicked = "undo";
                 }else if(nextProps.downRight !== this.props.downRight){
                     this.state.clicked = "downRight";
+
+                // if the user clicked on one of the levels.
                 }else if(nextProps.level !== this.props.level || this.state.currentLevel === nextProps.level){
                     var lst = this.createStartingPoint();
                     this.state.x = lst[0];
@@ -241,16 +266,22 @@ class GameBody extends Component{
                     this.createLevel(nextProps.level);
                     this.state.currentLevel = nextProps.level;
                     this.props.levelSegsFunc(this.state.winPath.segments.length);
+
+                //a default case just in case anything wrong happens.
                 }else{
-                    alert("Stopp!");
+                    alert("Sorry Something Went Wrong!");
         
                 }
+
+            // if the user did not click play and is trying to hit any other buttons.
             }else{
                 alert("Press Play First!");
             }
         }
         
     }
+    //depending on the value of this.state.clicked it adds a segment in the right point.
+    // checks each time if the user is going backwards by calling Compare then delete the last Segment. 
     componentDidUpdate(){
         if(this.state.clicked ==="up"){
             if (this.Compare(this.state.path) ==="deleteUp" ) {
