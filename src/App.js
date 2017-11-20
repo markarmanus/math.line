@@ -32,7 +32,6 @@ class App extends Component {
       status: "Click on Play To Start",
       usedSegs : 1,
       levelSegs: 30,
-      points : 0,
       dummyVariable : true,
       firstClickPlay: true,
      
@@ -53,8 +52,9 @@ class App extends Component {
     this.setState({levelSegs :  value,dummyVariable : !this.state.dummyVariable});
   }
   reset(){
+    points = 0;
     this.setState(this.getInitialState());
-    this.setState({reset: !this.state.reset});
+    this.setState({reset: !this.state.reset });
   }
   level(levelNum){
     this.setState({level: levelNum,status: "remember this shape and redraw it witht the arrows"});
