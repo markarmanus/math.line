@@ -214,6 +214,8 @@ class GameBody extends Component{
             if(this.state.clickedPlay === true){
                 alert("you are playing");
             }else{
+            this.componentDidMount();
+            this.componentDidMount();
             this.state.clickedPlay = true;
             this.state.winPath = this.createWinPath();
             this.createLevel(nextProps.level);
