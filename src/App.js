@@ -6,6 +6,7 @@ import LevelSelector from "./LevelSelector.js";
 import PageEnd from "./PageEnd.js";
 import './App.css';
 import GameAttributes from "./GameAttributes.js";
+var paper = require("paper");
 var  points = 0;
 
 
@@ -14,6 +15,11 @@ var  points = 0;
 
 
 class App extends Component {
+  constructor(props){
+    super(props);    
+    this.state = this.getInitialState();
+    this.setUpKeyboarListener();
+  }
 
   getInitialState(){
     return ({
@@ -37,10 +43,52 @@ class App extends Component {
      
     })
   }
-  constructor(props){
-    super(props);    
-    this.state = this.getInitialState();
+  setUpKeyboarListener(){
+    window.onload = function(){
+      paper.view.onKeyDown = function(event){        
+        switch(event.key){
+          case"w":
+          case"8":
+            this.up();
+            break;
+          case"s":
+          case"2":
+            this.down();
+            break;
+          case"a":
+          case"4":
+            this.left();
+            break;
+          case"d":
+          case"6":
+            this.right();
+            break;
+          case"q":
+          case"7":
+            this.upLeft();
+            break;
+          case"e":
+          case"9":
+            this.upRight();
+            break;
+          case"z":
+          case"1":
+            this.downLeft();
+            break;
+          case"c":
+          case"3":
+            this.downRight();
+            break;
+          case"backspace":
+            this.undo();
+            break;
+          default:
+            break;
+        };
+      }.bind(this);
+    }.bind(this);
   }
+
   // function to update number of segments user used.
   usedSegs(value){
     this.setState({usedSegs : value,dummyVariable : !this.state.dummyVariable});
@@ -75,52 +123,45 @@ class App extends Component {
   // functions to change the value of different direction states and rerender the game body.
   up(){ 
     if(this.state.firstClickPlay ===false){
-      this.setState({status: "Try to Redraw the Shape"});
+      this.setState({status: "Try to Redraw the Shape",up:this.state.up +1});
     }
-    this.setState({up: this.state.up + 1});
+
   }
   upRight(){
     if(this.state.firstClickPlay ===false){
-      this.setState({status: "Try to Redraw the Shape"});
+      this.setState({status: "Try to Redraw the Shape",upRight:this.state.upRight +1});
     }
-    this.setState({upRight: this.state.upRight +1})
   }
   upLeft(){
     if(this.state.firstClickPlay ===false){
-      this.setState({status: "Try to Redraw the Shape"});
+      this.setState({status: "Try to Redraw the Shape",upLeft:this.state.upLeft +1});
     }
-    this.setState({upLeft: this.state.upLeft +1})
   }
   down(){
     if(this.state.firstClickPlay ===false){
-      this.setState({status: "Try to Redraw the Shape"});
+      this.setState({status: "Try to Redraw the Shape",down:this.state.down +1});
     }
-    this.setState({down: this.state.down + 1});    
   }
   downRight(){
     if(this.state.firstClickPlay ===false){
-      this.setState({status: "Try to Redraw the Shape"});
+      this.setState({status: "Try to Redraw the Shape",downRight:this.state.downRight +1});
     }
-    this.setState({downRight: this.state.downRight +1})
   }
   downLeft(){
     if(this.state.firstClickPlay ===false){
-      this.setState({status: "Try to Redraw the Shape"});
+      this.setState({status: "Try to Redraw the Shape",downLeft:this.state.downLeft +1});
     }
-    this.setState({downLeft: this.state.downLeft +1})
   }
   right(){
     if(this.state.firstClickPlay ===false){
-      this.setState({status: "Try to Redraw the Shape"});
+      this.setState({status: "Try to Redraw the Shape",right:this.state.right +1});
     }
-    this.setState({right: this.state.right + 1});    
 
   }
   left(){
     if(this.state.firstClickPlay ===false){
-      this.setState({status: "Try to Redraw the Shape"});
+      this.setState({status: "Try to Redraw the Shape",left:this.state.left +1});
     }
-    this.setState({left: this.state.left + 1});    
   }
   //function to change undo value and rerender game body.
   undo(){

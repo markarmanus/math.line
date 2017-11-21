@@ -1,42 +1,42 @@
 // a list of levels each level i a list of the directions user should take to draw the shape.
 var directionsList= [
                         [   
-                            "u","u","ur","ur","dr","dr","d","d","l","l","l","l"
+                            "u","u","ur","ur","dr","dr","d","d","l","l","l","l",
                         ],
 
                         [
                             "u","u","ur","ur","r","r","dr","dr","d","d","dl","dl","l","l","ul","ul","u","u","ul","ul","u","u","ur","ur",
-                            "r","r","dr","dr","d","d"
+                            "r","r","dr","dr","d","d",
                             
                         ],
                         [
                             "u","u","u","r","d","l","u","ur","ur","r","r","dr","dr","d","l","u","r","d","d","d","dl",
                             "dl","l","l","ul","ul","r","r","r","r","r","r","dl","dl","d","d","d","d","ur","ur","ur","d","d","dl","dl","dl","d",
-                            "d","l","l","u","u","ul","ul","ul","u","u","dr","dr","dr","u","u","u","u"
+                            "d","l","l","u","u","ul","ul","ul","u","u","dr","dr","dr","u","u","u","u",
                         ],
                         [
                             
                             "ur","ur","ur","dr","dr","dr","l","l","l","l","l","l","u","ur","ur","ur","dr","dr","dr",
                             "l","l","l","l","l","l","u","ur","ur","ur","dr","dr","dr","l","l","l","l","l","l","u","ur","ur","ur","dr","dr","dr",
-                            "l","l","l","l","l","l","u","ur","ur","ur","dr","dr","dr","l","l","l","l","l","l"
+                            "l","l","l","l","l","l","u","ur","ur","ur","dr","dr","dr","l","l","l","l","l","l",
                              
 
                         ],
                         [
                             "u","u","u","ur","ur","ur","ur","ur","dr","dr","dr","dr","dr","d","d","d","l","l",
                             "l","l","l","l","u","u","u","r","r","d","d","d","l","l","l","l","l","l","u","u","u","u","ur","ur",
-                            "ur","ur","ur","dr","dr","dr","dr","dr","d","d","d","d","r","r","r","ur","dr","r","r","ur","dr","r","r","ur"
-                            ,"dr","r","r","ur","dr","r","r"                
+                            "ur","ur","ur","dr","dr","dr","dr","dr","d","d","d","d","r","r","r","ur","dr","r","r","ur","dr","r","r","ur",
+                            "dr","r","r","ur","dr","r","r",
                         ],
                         [
                             "u","ur","dr","d","dl","ul","u","ul","u","ur","dr","d","dl","ul","dl","d","dr","ur","dr",
-                            "d","dl","ul","u","ul","dl","d","dr","ur","u","ul","u","ul","dl","d","dr","ur","u","ul","u","ur","dr"
+                            "d","dl","ul","u","ul","dl","d","dr","ur","u","ul","u","ul","dl","d","dr","ur","u","ul","u","ur","dr",
                         ],
                        
                         [
                             "ur","ur","r","r","dr","dr","d","d","dl","dl","l","l","ul","ul","u","u","u","ur","ur","r","r",
                             "dr","dr","d","l","d","r","d","dl","dl","l","l","ul","ul","u","u","r","d","l","u","r","r","r","r","r","d","l",
-                            "l","l","l","d","r","r","r","r","u","u","ul","ul","dl","dl","d","d","d","r","r","r","r","u"
+                            "l","l","l","d","r","r","r","r","u","u","ul","ul","dl","dl","d","d","d","r","r","r","r","u",
                         ],
                        
                         [
@@ -45,13 +45,13 @@ var directionsList= [
                             "dr","dr","dr","d","d","d","d","dl","dl","dl","l","l","l","l","ul","ul","ul","u","u","u","u","r","ur",
                             "ur","r","r","r","r","dr","dr","d","d","d","d","dl",
                             "dl","l","l","l","l","ul","ul","u","u","u","u","ur","ur","d","r","r","r","r","dr","d","d","d","d","dl",
-                            "l","l","l","l","ul","u","u","u","u","ur","d","r","r","r","r","d","d","d","d",
+                            "l","l","l","l","ul","u","u","u","u","ur","d","r","r","r","r","d","d","d","d"
                             ,"l","l","l","l","u","u","u","u","r","r","r","r","dl","dl","dl","dl","u","u","u","u","dr",
-                            "dr","dr","dr"
+                            "dr","dr","dr",
                         ],
                         
                       
-                    ]
+                    ];
 // function that takes a path,level num, and a number to scale the drawing with and adds the level points to the path. 
 export function addLevelPoints(path,lst,num,scaleFactor) {
 
@@ -105,6 +105,8 @@ export function  createPointsList(startingPoint,levelNum,scaleFactor){
                     x = x -10;
                     y = y +10;
                     pointsList.push([x*scaleFactor,y*scaleFactor]);
+                    break;
+                default:
                     break;
 
             }
