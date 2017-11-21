@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {addLevelPoints} from "./levels.js";
 var paper = require("paper");
 var first = true;
-
-
+var height;
 
 
 
@@ -11,11 +10,15 @@ var first = true;
 class GameBody extends Component{ 
     //function that creates the starting point for the papper.js path.
     createStartingPoint(){
+ 
         var numOfSquaresWide = Math.floor(window.innerWidth / 40 ) + 1;
+        var numOfSquaresHeight = Math.floor(height/ 40 ) + 2;
         var lst =[];
-        var startingSquare = Math.floor(numOfSquaresWide * 0.45);
-        lst[0] = startingSquare *40
-        lst[1] = 240
+        var startingSquareWide = Math.floor(numOfSquaresWide * 0.45);
+        var startingSquareHeight = Math.floor(numOfSquaresHeight * 0.5);
+        
+        lst[0] = startingSquareWide *40;
+        lst[1] =   startingSquareHeight*40;
         return lst;
     }
     // makes sure we reload the canvas everytime the component re renders.
@@ -23,6 +26,8 @@ class GameBody extends Component{
 
         var canvas = document.getElementById('myCanvas');
         paper.setup(canvas);
+        height = canvas.scrollHeight;
+        
     }
     // gets the initial values of the component's States.
     getInitialState(){
