@@ -135,6 +135,12 @@
     transition: all 0.5s linear;
     
 }
+@media screen and (max-width: 600px){
+    .alert{
+        font-size: 11px;
+    }
+}
+
 .noDisplay{
     display: none;
 }
