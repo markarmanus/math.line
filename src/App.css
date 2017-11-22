@@ -122,4 +122,15 @@
     top: 20px;
     color: black;
 }
+.alert{
+    background-color: #9ead86;
+    text-align: center;
+    width: 80%;
+    margin: 10px auto;
+    border-color: #9ead86;
+    color: black;
+    font-size: 15px;
+    height: 30px;
+    padding: 0;
+}
 

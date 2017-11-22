@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {addLevelPoints} from "./levels.js";
 var paper = require("paper");
 var first = true;
-var height;
+var height = 338;
 
 
 
