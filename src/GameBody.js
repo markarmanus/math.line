@@ -132,7 +132,7 @@ class GameBody extends Component{
             this.props.levelSegsFunc(this.state.winPath.segments.length);
             this.props.levelFunc(nextLevel);
             this.props.usedSegsFunc(1);
-            alert("YOU GOT IT!");
+            this.props.createAlertFunc("YOU GOT IT!","3");
             
 
         }
@@ -217,7 +217,7 @@ class GameBody extends Component{
         }else if (nextProps.play !== this.props.play){
             this.state.clicked = "play";            
             if(this.state.clickedPlay === true){
-                alert("you are playing");
+                this.props.createAlertFunc("You are playing, just click any of the arrow to start drawing","4");
             }else{
             this.componentDidMount();
             this.componentDidMount();

@@ -6,6 +6,7 @@ import LevelSelector from "./LevelSelector.js";
 import PageEnd from "./PageEnd.js";
 import './App.css';
 import GameAttributes from "./GameAttributes.js";
+import Alert from "./Alert.js"
 var paper = require("paper");
 var  points = 0;
 
@@ -40,6 +41,8 @@ class App extends Component {
       levelSegs: 30,
       dummyVariable : true,
       firstClickPlay: true,
+      alertList: [<Alert id={Math.random()} key={Math.random()} massege="You can draw with the Numpad or with[ Q, W, E, A, S, D, Z, C, ]." />,
+                  <Alert id={Math.random()} key={Math.random()} massege="Click on Reset if you change the window size to resize the Grid." />]
      
     })
   }
@@ -87,6 +90,9 @@ class App extends Component {
         };
       }.bind(this);
     }.bind(this);
+  }
+  createAlert(massege,key){
+    this.setState({dummyVariable:!this.dummyVariable,alertList:[<Alert id={Math.random()} key={Math.random()} massege={massege} />]});
   }
 
   // function to update number of segments user used.
@@ -171,6 +177,7 @@ class App extends Component {
     
     return (
       <div className="App">
+        {this.state.alertList}
         <div id="header">
           <GameTitle />
           <h5 id="status">{this.state.status} </h5>
@@ -202,6 +209,7 @@ class App extends Component {
                       usedSegsFunc = {this.usedSegs.bind(this)}
                       pointsFunc = {this.points}
                       levelFunc = {this.level.bind(this)}
+                      createAlertFunc ={this.createAlert.bind(this)}
 
                       
           />
